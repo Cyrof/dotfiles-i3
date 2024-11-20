@@ -9,6 +9,7 @@ This repository contains my customised configuration files for [i3wm](https://i3
 - **Workspace Automation**:
     - **Visual Studio Code**: Always opens in **Workspace 2** for better organisation.
 - **Terminal Emulator**: [Kitty](https://sw.kovidgoyal.net/kitty/) for a fast, modern terminal experience with GPU acceleration. 
+- **Text Editor**: [Vim](https://wiki.archlinux.org/title/Vim) as the primary editor, configured with a custom `.vimrc` file.
 
 ## Tools Used
 ### 1. [Nitrogen](https://wiki.archlinux.org/title/Nitrogen)
@@ -30,6 +31,11 @@ This repository contains my customised configuration files for [i3wm](https://i3
 - A fast, GPU-accelerated terminal emulator with extensive customisation options. 
 - Includes features like split panes, tabs, and configurable shortcuts. 
 - The configuration file for Kitty (`kitty.conf`) is included in respository.
+
+### 6. [Vim](https://wiki.archlinux.org/title/Vim)
+- The primary text editor for efficient and keyboard-driven text editing.
+- Configured with a custom `.vimrc` file included in the repository.
+- The setup supports plugins and features a custom color scheme.
 
 ## Key Configurations 
 ### i3wm Configurations
@@ -69,6 +75,22 @@ The repository includes a `kitty.conf` file located in the `kitty/` directory. T
     ```
 2. Restart kitty or reload the configuration by restarting your terminal session.
 
+## Vim Configuration 
+The repository includes a `.vimrc` file located in the `vim/` directory. This file contains custom configurations for Vim, including: 
+- **Color Scheme**: Set to [Dracula](https://draculatheme.com/vim).
+- **True Color Support**: Enabled for terminals that support it.
+
+### Steps to Use the `.vimrc`:
+1. Copy the `.vimrc` file to your home directory: 
+    ```bash 
+    cp vim/.vimrc ~/vimrc
+    ```
+2. Ensure Vim supports true color: 
+    ```bash 
+    set termguicolors
+    ```
+3. Restart Vim to apply the new configurations.
+
 ## How to Use
 1. Clone this repository: 
     ```bash 
@@ -78,6 +100,7 @@ The repository includes a `kitty.conf` file located in the `kitty/` directory. T
     ```bash 
     cp dotfiles-i3/config ~/.config/i3/
     cp dotfiles-i3/kitty/kitty.conf ~/.config/kitty/
+    cp dotfiles-i3/vim/.vimrc ~/.vimrc
     ```
 3. Reload the i3 configuration:
     ``` bash 
@@ -85,7 +108,7 @@ The repository includes a `kitty.conf` file located in the `kitty/` directory. T
     ```
 4. Ensure **Nitrogen**, **Picom**, **Rofi** are installed: 
     ``` bash 
-    sudo pacman -S nitrogen picom rofi kitty
+    sudo pacman -S nitrogen picom rofi kitty vim
     ```
 5. Launch Nitrogen to set your wallpaper: 
     ```bash 
@@ -98,6 +121,7 @@ The repository includes a `kitty.conf` file located in the `kitty/` directory. T
 - Enhance Rofi theme and styling. 
 - Explore further transparency effects with Picom.
 - Add custom themes for Kitty.
+- Add plugin management for Vim.
 
 ## References
 - [i3wm Documentation](https://i3wm.org)
@@ -105,4 +129,5 @@ The repository includes a `kitty.conf` file located in the `kitty/` directory. T
 - [Arch Wiki: Picom](https://wiki.archlinux.org/title/Picom)
 - [Rofi GitHub Repository](https://github.com/davatorium/rofi)
 - [Kitty Documentation](https://sw.kovidgoyal.net/kitty/)
+- [Arch Wiki: Vim](https://wiki.archlinux.org/title/Vim)
 

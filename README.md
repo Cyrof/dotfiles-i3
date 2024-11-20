@@ -80,6 +80,11 @@ The repository includes a `.vimrc` file located in the `vim/` directory. This fi
 - **Color Scheme**: Set to [Dracula](https://draculatheme.com/vim).
 - **True Color Support**: Enabled for terminals that support it.
 
+## Rofi Configuration 
+The **Dracula theme** for Rofi is included and applied by default: 
+1. The config file can be retrieved from [dracula official](https://draculatheme.com/rofi).
+
+
 ### Steps to Use the `.vimrc`:
 1. Copy the `.vimrc` file to your home directory: 
     ```bash 
@@ -130,4 +135,5 @@ The repository includes a `.vimrc` file located in the `vim/` directory. This fi
 - [Rofi GitHub Repository](https://github.com/davatorium/rofi)
 - [Kitty Documentation](https://sw.kovidgoyal.net/kitty/)
 - [Arch Wiki: Vim](https://wiki.archlinux.org/title/Vim)
+- [Dracula Theme for Rofi](https://draculatheme.com/rofi)
 

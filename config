@@ -48,8 +48,8 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# start a terminal / Changed this default terminal to execute kitty emulator instead
+# bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -200,4 +200,12 @@ exec_always --no-startup-id picom
 exec_always --no-startup-id nm-applet
 
 # Run rofi instead of dmenu
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show run -theme ~/.config/rofi/config.rasi
+
+# Create vs code instance to always open in workspace 2
+assign [class="code"] 2
+
+# Create keybind for Kitty terminal emulator
+bindsym $mod+Return exec kitty 
+
+

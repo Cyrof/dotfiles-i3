@@ -10,6 +10,7 @@ This repository contains my customised configuration files for [i3wm](https://i3
     - **Visual Studio Code**: Always opens in **Workspace 2** for better organisation.
 - **Terminal Emulator**: [Kitty](https://sw.kovidgoyal.net/kitty/) for a fast, modern terminal experience with GPU acceleration. 
 - **Text Editor**: [Vim](https://wiki.archlinux.org/title/Vim) as the primary editor, configured with a custom `.vimrc` file.
+- **Custom Status Bar**: [Polybar](https://wiki.archlinux.org/title/Polybar) for a modern and highly customisable status bar.
 
 ## Tools Used
 ### 1. [Nitrogen](https://wiki.archlinux.org/title/Nitrogen)
@@ -37,6 +38,12 @@ This repository contains my customised configuration files for [i3wm](https://i3
 - Configured with a custom `.vimrc` file included in the repository.
 - The setup supports plugins and features a custom color scheme.
 
+### 7. [Polybar](https://wiki.archlinux.org/title/Polybar)
+- A lightweight and modern status bar, configured to replace i3's default bar. 
+- Includes modules for CPU usage, memory, network, workspaces, and a clock.
+- Configured with **Dracula color scheme** for a cohesive aesthetic. 
+- A `launch.sh` script is included to automatically start Polybar with i3.
+
 ## Key Configurations 
 ### i3wm Configurations
 The main i3 configuration file is located at `~/.config/i3/config`. Key customisations include: 
@@ -62,6 +69,11 @@ The main i3 configuration file is located at `~/.config/i3/config`. Key customis
     bindsym $mod+Return exec kitty
     ```
     Note: Make sure to comment or delete the original `bindsym $mod+Return` used to open `x-terminal-emulator`.
+- **Polybar** launch script:
+    ```bash 
+    exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+    ```
+
 
 ## Shortcuts 
 - **Open Rofi**: `Mod + D`
@@ -83,6 +95,11 @@ The repository includes a `.vimrc` file located in the `vim/` directory. This fi
 ## Rofi Configuration 
 The **Dracula theme** for Rofi is included and applied by default: 
 1. The config file can be retrieved from [dracula official](https://draculatheme.com/rofi).
+
+## Polybar Configuration
+The polybar configuration files are located in the `polybar` directory: 
+- `config.ini`: Defines the bar layout, modules, and appearance.
+- `launch.sh`: Script to launch Polybar.
 
 
 ### Steps to Use the `.vimrc`:
@@ -106,6 +123,8 @@ The **Dracula theme** for Rofi is included and applied by default:
     cp dotfiles-i3/config ~/.config/i3/
     cp dotfiles-i3/kitty/kitty.conf ~/.config/kitty/
     cp dotfiles-i3/vim/.vimrc ~/.vimrc
+    cp dotfiles-i3/polybar/config.ini ~/.config/polybar/
+    cp dotfiles.i3/polybar/launch.sh ~/.config/polybar/
     ```
 3. Reload the i3 configuration:
     ``` bash 
@@ -113,7 +132,7 @@ The **Dracula theme** for Rofi is included and applied by default:
     ```
 4. Ensure **Nitrogen**, **Picom**, **Rofi** are installed: 
     ``` bash 
-    sudo pacman -S nitrogen picom rofi kitty vim
+    sudo pacman -S nitrogen picom rofi kitty vim polybar
     ```
 5. Launch Nitrogen to set your wallpaper: 
     ```bash 
@@ -136,4 +155,6 @@ The **Dracula theme** for Rofi is included and applied by default:
 - [Kitty Documentation](https://sw.kovidgoyal.net/kitty/)
 - [Arch Wiki: Vim](https://wiki.archlinux.org/title/Vim)
 - [Dracula Theme for Rofi](https://draculatheme.com/rofi)
+- [Arch Wiki: Polybar](https://wiki.archlinux.org/title/Polybar)
+
 

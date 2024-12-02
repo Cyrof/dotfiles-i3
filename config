@@ -210,4 +210,8 @@ assign [class="code"] 2
 # Create keybind for Kitty terminal emulator
 bindsym $mod+Return exec kitty 
 
+# Add gaps
+gaps inner 1 px 
+gaps outer 5 px
+
 

@@ -85,16 +85,33 @@ The repository includes a `kitty.conf` file located in the `kitty/` directory. T
     ```bash
     cp kitty/kitty.conf ~/.config/kitty/
     ```
-2. Restart kitty or reload the configuration by restarting your terminal session.
+2. Copy the `current-theme.conf` file for the Dracula theme: 
+    ```
+    cp dotfiles-i3/kitty/current-theme.conf ~/.config/kitty/
+    ```
+3. Restart Kitty or reload the configuration.
 
 ## Vim Configuration 
 The repository includes a `.vimrc` file located in the `vim/` directory. This file contains custom configurations for Vim, including: 
 - **Color Scheme**: Set to [Dracula](https://draculatheme.com/vim).
 - **True Color Support**: Enabled for terminals that support it.
+### Steps to Use the `.vimrc`: 
+1. Copy the `.vimrc` file to your home directory: 
+    ``` 
+    cp vim/.vimrc ~/.vimrc
+    ```
+2. Restart vim to apply the new configurations.
 
 ## Rofi Configuration 
 The **Dracula theme** for Rofi is included and applied by default: 
-1. The config file can be retrieved from [dracula official](https://draculatheme.com/rofi).
+1. Create a configuration directory: 
+    ```
+    mkdir -p ~/.config/rofi
+    ```
+2. Copy the `config.rasi` file: 
+    ``` 
+    cp dotfiles-i3/rofi/config.rasi ~/.config/rofi/
+    ```
 
 ## Polybar Configuration
 The polybar configuration files are located in the `polybar` directory: 
@@ -105,7 +122,7 @@ The polybar configuration files are located in the `polybar` directory:
 ### Steps to Use the `.vimrc`:
 1. Copy the `.vimrc` file to your home directory: 
     ```bash 
-    cp vim/.vimrc ~/vimrc
+    cp vim/.vimrc ~/.vimrc
     ```
 2. Ensure Vim supports true color: 
     ```bash 
@@ -122,29 +139,24 @@ The polybar configuration files are located in the `polybar` directory:
     ```bash 
     cp dotfiles-i3/config ~/.config/i3/
     cp dotfiles-i3/kitty/kitty.conf ~/.config/kitty/
+    cp dotfiles-i3/kitty/current-theme.conf ~/.config/kitty/
     cp dotfiles-i3/vim/.vimrc ~/.vimrc
     cp dotfiles-i3/polybar/config.ini ~/.config/polybar/
-    cp dotfiles.i3/polybar/launch.sh ~/.config/polybar/
+    cp dotfiles-i3/polybar/launch.sh ~/.config/polybar/
+    cp dotfiles-i3/rofi/config.rasi ~/.config/rofi/
     ```
 3. Reload the i3 configuration:
     ``` bash 
     Mod + Shift + R 
     ```
-4. Ensure **Nitrogen**, **Picom**, **Rofi** are installed: 
+4. Ensure **tools** are installed: 
     ``` bash 
     sudo pacman -S nitrogen picom rofi kitty vim polybar
     ```
-5. Launch Nitrogen to set your wallpaper: 
-    ```bash 
-    nitrogen &
-    ```
 
 ## Future Enhancements 
-- Add additional keybindings for quick navigation.
-- Configure more applications to specific workspaces. 
-- Enhance Rofi theme and styling. 
-- Explore further transparency effects with Picom.
-- Add custom themes for Kitty.
+- Add more keybingings for navigation. 
+- Explore transparency effects. 
 - Add plugin management for Vim.
 
 ## References

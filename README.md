@@ -44,6 +44,21 @@ This repository contains my customised configuration files for [i3wm](https://i3
 - Configured with **Dracula color scheme** for a cohesive aesthetic. 
 - A `launch.sh` script is included to automatically start Polybar with i3.
 
+### 8. [Nerd Fonts](https://www.nerdfonts.com)
+- Provides patched fonts with extra icons and glyphs. 
+- Recommended font: `SauceCodePro Nerd Font`. 
+**Installation (Manjaro)**: 
+1. Install Nerd Fonts via the package manager: 
+    ```
+    sudo pacman -S nerd-fonts 
+    ```
+2. From the selection menu, choose `ttf-sourcecodepro-nerd`.
+3. Update the font cache: 
+    ```
+    fc-cache -fv
+    ```
+4. Restart i3 to apply font changes.
+
 ## Key Configurations 
 ### i3wm Configurations
 The main i3 configuration file is located at `~/.config/i3/config`. Key customisations include: 

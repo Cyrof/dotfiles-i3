@@ -215,3 +215,5 @@ gaps inner 3 px
 gaps outer 5 px
 
 
+# start up virtualbox client
+exec --no-startup-id VBoxClient-all

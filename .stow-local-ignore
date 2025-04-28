@@ -1,0 +1,7 @@
+# ignore all file not related to stow
+
+^\.git$
+^\.gitignore$
+^README\.md$
+^LICENSE$
+^update_configs\.sh$

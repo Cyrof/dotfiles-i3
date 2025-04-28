@@ -12,6 +12,14 @@ This repository contains my customised configuration files for [i3wm](https://i3
 - **Text Editor**: [Vim](https://wiki.archlinux.org/title/Vim) as the primary editor, configured with a custom `.vimrc` file.
 - **Custom Status Bar**: [Polybar](https://wiki.archlinux.org/title/Polybar) for a modern and highly customisable status bar.
 
+## Symlink Change (IMPORTANT)
+This dotfile will now use symlink using [Stow GNU](https://www.gnu.org/software/stow/). After installing `stow`, run this command:
+```
+cd dotfiles-i3
+stow -v --target="$HOME/.config" .config
+```
+This will creat a symlink of the `.config` in this folder the the `.config` in the machine. 
+
 ## Tools Used
 ### 1. [Nitrogen](https://wiki.archlinux.org/title/Nitrogen)
 - Used to set and resetore wallpapers. 

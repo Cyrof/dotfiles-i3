@@ -196,7 +196,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 exec_always --no-startup-id nitrogen --restore
 
 # Start picom for transparent windows 
-exec_always --no-startup-id picom
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
 # Start nm-applet for network management
 exec_always --no-startup-id nm-applet
@@ -206,6 +206,7 @@ bindsym $mod+d exec rofi -show run -theme ~/.config/rofi/config.rasi
 
 # Create vs code instance to always open in workspace 2
 assign [class="code"] 2
+assign [class="nvim"] 2
 
 # Create keybind for Kitty terminal emulator
 bindsym $mod+Return exec kitty 

@@ -2,6 +2,26 @@
 font_family Fira Code
 font_size 12.0
 
+# colors config
+foreground #f8f8f2
+background #282a36
+color0     #000000
+color1     #ff5555
+color2     #50fa7b
+color3     #f1fa8c
+color4     #bd93f9
+color5     #ff79c6
+color6     #8be9fd
+color7     #bbbbbb
+color8     #44475a
+color9     #ff5555
+color10    #50fa7b
+color11    #f1fa8c
+color12    #bd93f9
+color13    #ff79c6
+color14    #8be9fd
+color15    #ffffff
+
 # opacity config
 background_opacity 0.9
 
@@ -21,15 +41,3 @@ map ctrl+shift+w close_tab
 # navigation tab 
 map ctrl+shift+right next_tab
 map ctrl+shift+left previous_tab
-
-
-# BEGIN_KITTY_THEME
-# Dracula
-include current-theme.conf
-# END_KITTY_THEME
-
-# remove top bar to make it seamless
-hide_window_decorations yes
-
-# disable kitty terminal sound
-enable_audio_bell no

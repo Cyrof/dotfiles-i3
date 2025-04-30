@@ -13,12 +13,12 @@ vim.o.clipboard = "unnamedplus"
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 
-vim.g.mapleader = ',' 
+vim.g.mapleader = ','
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, silent = true })
 
 -- load lazy nvim
 local ok, err = pcall(require, "config.lazy")
-if not ok then 
+if not ok then
     -- print it on screen and stop exiting
     print("lazy.nvim bootstrap error:\n", err)
     return

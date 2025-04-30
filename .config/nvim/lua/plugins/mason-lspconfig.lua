@@ -14,6 +14,8 @@ return {
                 "rust_analyzer",
                 "gopls",
                 "clangd",
+                "yamlls",
+                "marksman",
             },
             automatic_installation = true,
         },

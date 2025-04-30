@@ -13,11 +13,9 @@ return {
             if ok then
                 capabilities = cmp_lsp.default_capabilities(capabilities)
             end
-            
             -- on_attach
             local on_attach = function(client, bufnr)
-                local bufopts = { noremap=true, silent=true, buffer=buffer }
-                local km = vim.keymap.set
+                local bufopts = { noremap=true, silent=true, buffer=bufnr }
                  local km = vim.keymap.set
                 km("n","gD", vim.lsp.buf.declaration, bufopts)
                 km("n","gd", vim.lsp.buf.definition,  bufopts)
@@ -31,7 +29,6 @@ return {
                   vim.lsp.buf.format({ async = true })
                 end, bufopts)
             end
-            
             -- handler for all servers, with lua_ls override
             require("mason-lspconfig").setup_handlers({
                 function(server)
@@ -57,8 +54,29 @@ return {
                         },
                     })
                 end,
+                ["yamlls"] = function()
+                    require("lspconfig").yamlls.setup({
+                        on_attach = on_attach,
+                        capabilities = capabilities,
+                        settings = {
+                            yaml = {
+                                validate = true,
+                                format = { enable = true },
+                                schemas = {
+                                    ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.y?(a)ml",
+                                    ["kubernetes"] = "/*.k8s.yaml",
+                                },
+                            },
+                        },
+                    })
+                end,
+                ["marksman"] = function()
+                    require("lspconfig").marksman.setup({
+                        on_attach = on_attach,
+                        capabilities = capabilities,
+                    })
+                end,
             })
-            
             -- diagnostics & signs 
               vim.diagnostic.config({
                 virtual_text     = { prefix = "●", source = "if_many" },

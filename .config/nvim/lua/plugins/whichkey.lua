@@ -57,6 +57,10 @@ return {
         { "<leader>lf","<cmd>lua vim.lsp.buf.format()<cr>",      desc = "Format"      },
         { "<leader>lh","<cmd>lua vim.lsp.buf.hover()<cr>",       desc = "Hover"       },
         { "<leader>lr","<cmd>Telescope lsp_references<cr>",     desc = "References"  },
+
+        -- markdown preview prefix
+        {"<leader>m", group = "Markdown" },
+        { "<leader>mp", "<cmd>MarkdownPreview<cr>", desc = "Toggle Preview" },
       })
     end,
   },

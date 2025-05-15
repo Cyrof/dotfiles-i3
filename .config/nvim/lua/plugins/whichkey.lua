@@ -59,8 +59,13 @@ return {
         { "<leader>lr","<cmd>Telescope lsp_references<cr>",     desc = "References"  },
 
         -- markdown preview prefix
-        {"<leader>m", group = "Markdown" },
+        { "<leader>m", group = "Markdown" },
         { "<leader>mp", "<cmd>MarkdownPreview<cr>", desc = "Toggle Preview" },
+
+        -- comment prefix
+        { "<leader>g", group = "Comment" },
+        { "<leader>gc", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", desc = "Line Comment" },
+        { "<leader>gb", "<cmd>lua require('Comment.api').toggle.blockwise.current()<CR>", desc = "Block Comment" },
       })
     end,
   },

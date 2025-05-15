@@ -206,7 +206,6 @@ bindsym $mod+d exec rofi -show run -theme ~/.config/rofi/config.rasi
 
 # Create vs code instance to always open in workspace 2
 assign [class="code"] 2
-assign [class="nvim"] 2
 
 # Create keybind for Kitty terminal emulator
 bindsym $mod+Return exec kitty 

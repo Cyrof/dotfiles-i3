@@ -1,11 +1,13 @@
 return {
     {
         "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
+        after = "mason-lspconfig.nvim",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim"
         },
+        event = { "BufReadPre", "BufNewFile" },
         config = function()
             -- build cmp capabilities 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -29,54 +31,64 @@ return {
                   vim.lsp.buf.format({ async = true })
                 end, bufopts)
             end
-            -- handler for all servers, with lua_ls override
-            require("mason-lspconfig").setup_handlers({
-                function(server)
-                    require("lspconfig")[server].setup({
-                        on_attach = on_attach,
-                        capabilities = capabilities,
-                    })
-                end,
-                ["lua_ls"] = function()
-                    require("lspconfig").lua_ls.setup({
-                        on_attach = on_attach,
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = { version = "LuaJIT" },
-                                diagnostics = { globals = { "vim" } },
-                                workspace = {
-                                    library = vim.api.nvim_get_runtime_file("", true),
-                                    checkThirdParty = false,
-                                },
-                                telemetry = { enable = false },
-                            },
-                        },
-                    })
-                end,
-                ["yamlls"] = function()
-                    require("lspconfig").yamlls.setup({
-                        on_attach = on_attach,
-                        capabilities = capabilities,
-                        settings = {
-                            yaml = {
-                                validate = true,
-                                format = { enable = true },
-                                schemas = {
-                                    ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.y?(a)ml",
-                                    ["kubernetes"] = "/*.k8s.yaml",
+
+            -- Lua
+            vim.lsp.config("lua_ls", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                on_init = function(client)
+                    if client.workspace_folders then
+                        local path = client.workspace_folders[1].name
+                        if path ~= vim.fn.stdpath("config")
+                            and (vim.loop.fs_stat(path .. "/.luarc.json"))
+                                or vim.loop.fs_stat(path .. "/.luarc.jsonc")
+                        then
+                            return
+                        end
+                    end
+                    client.config.settings.Lua = vim.tbl_deep_extend("force",
+                        client.config.settings.Lua or {}, 
+                        {
+                            runtime = { version = "LuaJIT" },
+                            workspace = {
+                                checkThirdParty = false,
+                                library = {
+                                    vim.env.VIMRUNTIME,
+                                    "${3rd}/luv/library",
                                 },
                             },
-                        },
-                    })
+                        }
+                    )
                 end,
-                ["marksman"] = function()
-                    require("lspconfig").marksman.setup({
-                        on_attach = on_attach,
-                        capabilities = capabilities,
-                    })
-                end,
+                settings = {
+                    Lua = {
+                        telemetry = { enabled = false },
+                    },
+                },
             })
+
+            -- YAML
+            vim.lsp.config("yamlls", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    yaml = {
+                        validate = true, 
+                        format = { enabled = true },
+                        schemas = {
+                            ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.y?(a)ml",
+                            ["kubernetes"] = "/*.k8s.yaml",
+                        },
+                    },
+                },
+            })
+
+            -- Markdown
+            vim.lsp.config("marksman", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+            })
+
             -- diagnostics & signs 
               vim.diagnostic.config({
                 virtual_text     = { prefix = "●", source = "if_many" },

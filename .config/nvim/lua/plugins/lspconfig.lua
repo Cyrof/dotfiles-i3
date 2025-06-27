@@ -89,6 +89,21 @@ return {
                 capabilities = capabilities,
             })
 
+            -- Python config
+            vim.lsp.config("pyright", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    python = {
+                        analysis = {
+                            autoSearchPaths = true,
+                            useLibraryCodeForTypes = true,
+                            diagnosticMode = "OpenFilesOnly"
+                        }
+                    }
+                }
+            })
+
             -- diagnostics & signs 
               vim.diagnostic.config({
                 virtual_text     = { prefix = "●", source = "if_many" },

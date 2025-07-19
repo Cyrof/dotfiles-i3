@@ -9,7 +9,7 @@ return {
         },
         event = { "BufReadPre", "BufNewFile" },
         config = function()
-            -- build cmp capabilities 
+            -- build cmp capabilities
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             local ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
             if ok then
@@ -17,18 +17,18 @@ return {
             end
             -- on_attach
             local on_attach = function(client, bufnr)
-                local bufopts = { noremap=true, silent=true, buffer=bufnr }
-                 local km = vim.keymap.set
-                km("n","gD", vim.lsp.buf.declaration, bufopts)
-                km("n","gd", vim.lsp.buf.definition,  bufopts)
-                km("n","K",  vim.lsp.buf.hover,       bufopts)
-                km("n","gi", vim.lsp.buf.implementation, bufopts)
-                km("n","<C-k>", vim.lsp.buf.signature_help, bufopts)
-                km("n","<leader>rn", vim.lsp.buf.rename,      bufopts)
-                km("n","<leader>ca", vim.lsp.buf.code_action, bufopts)
-                km("n","gr", vim.lsp.buf.references,          bufopts)
-                km("n","<leader>lf", function()
-                  vim.lsp.buf.format({ async = true })
+                local bufopts = { noremap = true, silent = true, buffer = bufnr }
+                local km = vim.keymap.set
+                km("n", "gD", vim.lsp.buf.declaration, bufopts)
+                km("n", "gd", vim.lsp.buf.definition, bufopts)
+                km("n", "K", vim.lsp.buf.hover, bufopts)
+                km("n", "gi", vim.lsp.buf.implementation, bufopts)
+                km("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+                km("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+                km("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+                km("n", "gr", vim.lsp.buf.references, bufopts)
+                km("n", "<leader>lf", function()
+                    vim.lsp.buf.format({ async = true })
                 end, bufopts)
             end
 
@@ -41,13 +41,13 @@ return {
                         local path = client.workspace_folders[1].name
                         if path ~= vim.fn.stdpath("config")
                             and (vim.loop.fs_stat(path .. "/.luarc.json"))
-                                or vim.loop.fs_stat(path .. "/.luarc.jsonc")
+                            or vim.loop.fs_stat(path .. "/.luarc.jsonc")
                         then
                             return
                         end
                     end
                     client.config.settings.Lua = vim.tbl_deep_extend("force",
-                        client.config.settings.Lua or {}, 
+                        client.config.settings.Lua or {},
                         {
                             runtime = { version = "LuaJIT" },
                             workspace = {
@@ -73,7 +73,7 @@ return {
                 capabilities = capabilities,
                 settings = {
                     yaml = {
-                        validate = true, 
+                        validate = true,
                         format = { enabled = true },
                         schemas = {
                             ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.y?(a)ml",
@@ -104,19 +104,22 @@ return {
                 }
             })
 
-            -- diagnostics & signs 
-              vim.diagnostic.config({
+            -- diagnostics & signs
+            vim.diagnostic.config({
                 virtual_text     = { prefix = "●", source = "if_many" },
                 float            = { border = "rounded", source = "always" },
-                signs            = true,
+                signs            = {
+                    text = {
+                        [vim.diagnostic.severity.ERROR] = "",
+                        [vim.diagnostic.severity.WARN] = "",
+                        [vim.diagnostic.severity.INFO] = "",
+                        [vim.diagnostic.severity.HINT] = "",
+                    },
+                },
                 underline        = true,
                 update_in_insert = false,
                 severity_sort    = true,
-              })
-
-              for type, icon in pairs({ Error = "", Warn = "", Info = "", Hint = "" }) do
-                vim.fn.sign_define("DiagnosticSign" .. type, { text = icon, texthl = "DiagnosticSign" .. type })
-              end
+            })
         end,
     },
 }

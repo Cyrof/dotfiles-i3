@@ -10,15 +10,15 @@ return {
         },
         config = function()
             local has_cmp, cmp = pcall(require, "cmp")
-            if not has_cmp then 
+            if not has_cmp then
                 vim.notify("nvim-cmp not found-completion disabled", vim.log.levels.WARN)
                 return
             end
-               
+
             local has_luasnip, luasnip = pcall(require, "luasnip")
-            if not has_luasnip then 
+            if not has_luasnip then
                 vim.notify("LuaSnip not found-snippet support disabled", vim.log.levels.WARN)
-                return 
+                return
             end
 
             cmp.setup({
@@ -36,9 +36,9 @@ return {
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<C-e>"] = cmp.mapping.abort(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = false}),
+                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
                     ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then 
+                        if cmp.visible() then
                             cmp.select_next_item()
                         elseif luasnip.expand_or_jumpable() then
                             luansnip.expand_or_jump()
@@ -60,7 +60,7 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
-                    { name = "buffer" }, 
+                    { name = "buffer" },
                     { name = "path" },
                 }),
                 formatting = {
@@ -75,8 +75,8 @@ return {
                     end,
                 },
             })
-        
-            -- command line completion 
+
+            -- command line completion
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = {

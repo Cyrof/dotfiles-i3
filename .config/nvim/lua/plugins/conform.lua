@@ -1,6 +1,6 @@
 return {
     "stevearc/conform.nvim",
-    event = { "BufWritePre "},
+    event = { "BufWritePre " },
     opts = {
         format_on_save = {
             timeout_ms = 500,
@@ -12,6 +12,7 @@ return {
             python = { "black" },
             yaml = { "prettier" },
             markdown = { "prettier" },
+            sql = { "sql_formatter" },
         },
     },
 }

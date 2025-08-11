@@ -16,6 +16,7 @@ return {
                 "clangd",
                 "yamlls",
                 "marksman",
+                "sqls",
             },
             automatic_installation = true,
         },

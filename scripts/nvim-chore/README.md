@@ -31,7 +31,7 @@ This will compile binary into `./bin/nvim-chore`.
 **Examples:**
 
 ```bash
-./bin/nvim/nvim-chore               # commit + push ./config/nvim changes
+./bin/nvim-chore               # commit + push ./config/nvim changes
 ./bin/nvim-chore "bump plugins"     # commit with extra message
 ./bin/nvim-chore -dry-run           # preview staged diff & commit message
 ./bin/nvim-chore -no-push           # commit only, skip pushing

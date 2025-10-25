@@ -104,6 +104,91 @@ return {
                 }
             })
 
+            -- Web stack
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+            -- html
+            vim.lsp.config("html", {
+                cmd = { "vscode-html-language-server", "--stdio" },
+                on_attach = on_attach,
+                capabilities = capabilities,
+                filetypes = { "html", "templ", "twig", "hbs" },
+            })
+
+            -- css
+            vim.lsp.config("cssls", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    css = { validate = true },
+                    less = { validate = true },
+                    scss = { validate = true },
+                }
+            })
+
+            -- Emmet
+            vim.lsp.config("emmet_ls", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                filetypes = {
+                    "html", "css", "sass", "scss", "less",
+                    "javascriptreact", "typescriptreact",
+                    "vue", "svelte", "astro", "heex", "eelixir", "templ",
+                },
+                init_options = { html = { options = { ["bem.enabled"] = true } } },
+            })
+
+            -- tailwind css
+            vim.lsp.config("tailwindcss", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                filtypes = {
+                    "html", "css", "scss", "less",
+                    "javascript", "javascriptreact",
+                    "typescript", "typescriptreact",
+                    "vue", "svelte", "astro", "templ",
+                },
+            })
+
+            -- json (SchemaStore if available)
+            do
+                local schemas = nil
+                local jok, schemastore = pcall(require, "schemastore")
+                if jok then
+                    schemas = schemastore.json.schemas()
+                end
+                vim.lsp.config("jsonls", {
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                    settings = {
+                        json = {
+                            validate = { enabled = true },
+                            schemas = schemas,
+                        },
+                    },
+                })
+            end
+
+            -- eslint
+            vim.lsp.config("eslint", {
+                on_attach = function(client, bufnr)
+                    on_attach(client, bufnr)
+                    if vim.fn.exists(":EslintFixAll") == 2 then
+                        vim.api.nvim_create_autocmd("BufWritePre", {
+                            buffer = bufnr,
+                            command = "EslintFixAll",
+                        })
+                    end
+                end,
+                capabilities = capabilities
+            })
+
+            -- stylelint (css/scss linting)
+            vim.lsp.config("stylelint_lsp", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+            })
+
             -- diagnostics & signs
             vim.diagnostic.config({
                 virtual_text     = { prefix = "●", source = "if_many" },

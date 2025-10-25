@@ -13,6 +13,18 @@ return {
             yaml = { "prettier" },
             markdown = { "prettier" },
             sql = { "sql_formatter" },
+
+            -- web stack
+            html = { "prettier" },
+            css = { "prettier" },
+            scss = { "prettier" },
+            less = { "prettier" },
+            json = { "prettier" },
+            javascript = { "prettier" },
+            javascriptreact = { "prettier" },
+            typescript = { "prettier" },
+            typescriptreact = { "prettier" },
+            vue = { "prettier" },
         },
     },
 }

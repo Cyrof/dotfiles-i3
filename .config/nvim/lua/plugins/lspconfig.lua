@@ -16,7 +16,7 @@ return {
                 capabilities = cmp_lsp.default_capabilities(capabilities)
             end
             -- on_attach
-            local on_attach = function(client, bufnr)
+            local on_attach = function(_, bufnr)
                 local bufopts = { noremap = true, silent = true, buffer = bufnr }
                 local km = vim.keymap.set
                 km("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -142,7 +142,7 @@ return {
             vim.lsp.config("tailwindcss", {
                 on_attach = on_attach,
                 capabilities = capabilities,
-                filtypes = {
+                filetypes = {
                     "html", "css", "scss", "less",
                     "javascript", "javascriptreact",
                     "typescript", "typescriptreact",
@@ -187,6 +187,14 @@ return {
             vim.lsp.config("stylelint_lsp", {
                 on_attach = on_attach,
                 capabilities = capabilities,
+            })
+
+            -- map tmpl to html
+            vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+                pattern = "*.tmpl",
+                callback = function()
+                    vim.bo.filetype = "html"
+                end,
             })
 
             -- diagnostics & signs

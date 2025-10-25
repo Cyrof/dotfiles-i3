@@ -25,6 +25,7 @@ return {
             typescript = { "prettier" },
             typescriptreact = { "prettier" },
             vue = { "prettier" },
+            tmpl = { "prettier" },
         },
     },
 }

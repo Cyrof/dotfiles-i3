@@ -25,7 +25,14 @@ return {
             typescript = { "prettier" },
             typescriptreact = { "prettier" },
             vue = { "prettier" },
-            tmpl = { "prettier" },
+            tmpl = { "prettier_tmpl" },
+        },
+        formatters = {
+            prettier_tmpl = {
+                command = "prettier",
+                args = { "--stdin-filepath", "$FILENAME", "--parser", "html" },
+                stdin = true,
+            },
         },
     },
 }

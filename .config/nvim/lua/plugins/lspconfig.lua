@@ -150,6 +150,13 @@ return {
                 },
             })
 
+            -- grpc / proto
+            vim.lsp.config("bufls", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                filetypes = { "proto" }
+            })
+
             -- json (SchemaStore if available)
             do
                 local schemas = nil

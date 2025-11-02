@@ -9,7 +9,7 @@ return {
                 ensure_installed = {
                     "lua", "vim", "vimdoc", "javascript", "typescript", "python",
                     "rust", "go", "html", "css", "json", "yaml", "toml",
-                    "markdown", "bash",
+                    "markdown", "bash", "proto",
                 },
                 auto_install = true,
                 highlight = { enable = true },

@@ -1,38 +1,55 @@
 return {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
-    opts = {
-        format_on_save = {
-            timeout_ms = 500,
-            lsp_fallback = true,
-        },
-        formatters_by_ft = {
-            go = { "goimports" },
-            lua = { "stylua" },
-            python = { "black" },
-            yaml = { "prettier" },
-            markdown = { "prettier" },
-            sql = { "sql_formatter" },
+    opts = function ()
+        local util = require("conform.util")
 
-            -- web stack
-            html = { "prettier" },
-            css = { "prettier" },
-            scss = { "prettier" },
-            less = { "prettier" },
-            json = { "prettier" },
-            javascript = { "prettier" },
-            javascriptreact = { "prettier" },
-            typescript = { "prettier" },
-            typescriptreact = { "prettier" },
-            vue = { "prettier" },
-            tmpl = { "prettier_tmpl" },
-        },
-        formatters = {
-            prettier_tmpl = {
-                command = "prettier",
-                args = { "--stdin-filepath", "$FILENAME", "--parser", "html" },
-                stdin = true,
+        return {
+            format_on_save = {
+                timeout_ms = 500,
+                lsp_fallback = true,
             },
-        },
-    },
+            formatters_by_ft = {
+                go = { "goimports" },
+                lua = { "stylua" },
+                python = { "black" },
+                yaml = { "prettier" },
+                markdown = { "prettier" },
+                sql = { "sql_formatter" },
+                proto = { "clang_format" },
+
+                -- web stack
+                html = { "prettier" },
+                css = { "prettier" },
+                scss = { "prettier" },
+                less = { "prettier" },
+                json = { "prettier" },
+                javascript = { "prettier" },
+                javascriptreact = { "prettier" },
+                typescript = { "prettier" },
+                typescriptreact = { "prettier" },
+                vue = { "prettier" },
+                tmpl = { "prettier_tmpl" },
+            },
+            formatters = {
+                clang_format = {
+                    prepend_args = {
+                        "--style=file",
+                    },
+                },
+                prettier = {
+                    prepend_args = {
+                        "--config-precedence=prefer-file",
+                    },
+                    cwd = util.root_file({ ".prettierrc", ".prettierrc.json", "package.json" }),
+                    require_cwd = false,
+                },
+                prettier_tmpl = {
+                    command = "prettier",
+                    args = { "--stdin-filepath", "$FILENAME", "--parser", "html" },
+                    stdin = true,
+                },
+            },
+        }
+    end,
 }

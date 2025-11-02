@@ -25,6 +25,8 @@ return {
                 "jsonls",
                 "eslint",
                 "stylelint_lsp",
+                -- grpc
+                "bufls",
             },
             automatic_installation = true,
         },

@@ -77,7 +77,6 @@ return {
                 -- Illuminate
                 { "]r",         "<cmd>lua require('illuminate').goto_next_reference(false)<cr>",  desc = "Next Reference" },
                 { "r[",         "<cmd>lua require('illuminate').goto_prev_reference(false)<cr>",  desc = "Previous Reference" },
-                { "<leader>uI", "<cmd>IBLEnable<cr><cmd>IBLDisable<cr>",                          desc = "Toggle Indent Guides" }
             })
         end,
     },

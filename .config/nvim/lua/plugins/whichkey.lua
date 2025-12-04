@@ -77,6 +77,14 @@ return {
                 -- Illuminate
                 { "]r",         "<cmd>lua require('illuminate').goto_next_reference(false)<cr>",  desc = "Next Reference" },
                 { "r[",         "<cmd>lua require('illuminate').goto_prev_reference(false)<cr>",  desc = "Previous Reference" },
+
+                -- Noice
+                { "<leader>s",  group = "Search/Messages" },
+                { "<leader>sn", "<cmd>Noice history<cr>",                                         desc = "Noice History" },
+                { "<leader>sm", "<cmd>Noice last<cr>",                                            desc = "Last Message" },
+                { "<leader>se", "<cmd>Noice errors<cr>",                                          desc = "Error Messages" },
+                { "<leader>sc", "<cmd>Noice dismiss<cr>",                                         desc = "Dismiss Messages" },
+                { "<leader>sa", "<cmd>Noice all<cr>",                                             desc = "All Messages" },
             })
         end,
     },

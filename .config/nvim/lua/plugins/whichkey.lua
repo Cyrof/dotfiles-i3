@@ -73,6 +73,11 @@ return {
                 { "<leader>gb", "<cmd>lua require('gitsigns').toggle_current_line_blame()<cr>",   desc = "Toggle Blame" },
                 { "]h",         "<cmd>lua require('gitsigns).next_hunk()<cr>",                    desc = "Next Hunk" },
                 { "[h",         "<cmd>lua require('gitsigns').prev_hunk()<cr>",                   desc = "Previous Hunk" },
+
+                -- Illuminate
+                { "]r",         "<cmd>lua require('illuminate').goto_next_reference(false)<cr>",  desc = "Next Reference" },
+                { "r[",         "<cmd>lua require('illuminate').goto_prev_reference(false)<cr>",  desc = "Previous Reference" },
+                { "<leader>uI", "<cmd>IBLEnable<cr><cmd>IBLDisable<cr>",                          desc = "Toggle Indent Guides" }
             })
         end,
     },

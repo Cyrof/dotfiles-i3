@@ -20,12 +20,15 @@ This `README` describes the configuration files in this directory for **Neovim**
         ├── dracula.lua             # Dracula color scheme setup
         ├── explorer.lua            # File explorer (e.g., nvim-tree)
         ├── gitsigns.lua            # Git signs in the gutter
+        ├── illuminate.lua          # Highlight repeated words under cursor
+        ├── indent-blankline.lua    # Indentation guides
         ├── lspconfig.lua           # LSP setup (mason, mason-lspconfig, handlers)
         ├── lualine.lua             # Statusline (lualine.nvim)
         ├── markdownViewer.lua      # Markdown preview plugin
         ├── mason-lspconfig.lua     # mason-lspconfig.nvim setup
         ├── mason.lua               # mason.nvim install configuration
         ├── neoscroll.lua           # Smooth scrolling (neoscroll.nvim)
+        ├── noice.lua               # UI + message, cmdline, popup enhancements
         ├── telescope.lua           # Fuzzy finder (telescope.nvim)
         ├── treesitter.lua          # Syntax & text objects (nvim-treesitter)
         └── whichkey.lua            # Keybinding hints (which-key.nvim)
@@ -52,14 +55,20 @@ sudo apt install neovim git nodejs npm ripgrep fd-find bat
 
 ## 3. Installation & Setup
 
-1. Open Neovim:
-   ```
-   nvim
-   ```
-2. Run `:Lazy sync` to install all plugins defined in `lua/config/lazy.lua`.
-3. Run `:Mason` and install any LSP servers you need (e.g., `pyright`, `lua_ls`).
-
-After installation completes, restart Neovim to activate all plugins.
+1. Clone or copy this config into `~/.config.nvim`
+2. Launch Neovim:
+    ```bash
+    nvim
+    ```
+3. Install plugins:
+    ```vim
+    :Lazy sync
+    ```
+4. Install LSP servers via Mason:
+   `vim
+:Mason
+`
+   Restart Neovim afterwards
 
 ## 4. Plugin Overview
 
@@ -84,10 +93,46 @@ After installation completes, restart Neovim to activate all plugins.
 | **neoscroll.nvim**        | Smooth scrolling animations                    |
 | **conform.nvim**          | Code formatting with external formatters       |
 | **gitsigns.nvim**         | Git diff signs, blame, and hunk actions        |
+| **noice.nvim**            | Modern UI for messages, cmdline, popups        |
+| **indent-blankline**      | Visual indent guides                           |
+| **vim-illuminate**        | Highlights repeated text under cursor          |
 
 Each plugin's individual settings live in `lua/plugins/*.lua`.
 
-## 5. Customisation
+## 5. LSP Language Support
+
+### Backend / Systems / General
+
+- `lua_ls` &mdash; Lua (for Neovim config)
+- `pyright` &mdash; Python
+- `rust_analyzer` &mdash; Rust
+- `gopls` &mdash; Go
+- `clangd` &mdash; C/C++
+- `sqls` &mdash; SQL LSP
+
+### Web Development
+
+- `tsserver` &mdash JavaScript & TypeScript
+- `html`
+- `cssls`
+- `emmet_ls`
+- `tailwindcss`
+- `jsonls`
+- `eslint`
+- `stylelint_lsp`
+
+### Infrastructure / Scripting
+
+- `yamlls`
+- `marksman` &mdash; Markdown
+
+### gRPC / Protobuf
+
+- `bufls`
+
+This setup fully supports **Python**, **Lua**, **JS/TS**, **Rust**, **Go**, **C/C++**, **SQL**, **Yaml**, **Web Stack**, **gRPC/Proto**, and **Markdown**.
+
+## 6. Customisation
 
 - **Themes**: Modify `lua/plugins/dracula.lua` or switch to another colorscheme.
 - **LSP**: Tweak `lua/plugins/lspconfig.lua` for on_attach, capabilities, handlers, and server-specific settings.
@@ -95,49 +140,36 @@ Each plugin's individual settings live in `lua/plugins/*.lua`.
 - **Explorer**: Configure view options, icons, and filesystem filters in `explorer.lua`.
 - **Statusline**: Change sections, separators, and themes in `lualine.lua`.
 - **Completion**: Enable/disable sources or adjust sorting in `completion.lua`.
+- **UI Enhancements**: Configure Noice and its presets in `noice.lua`.
+- **Indent guide**: Adjust behavior in `indent-blankline.lua`.
 
-After any change, reopen Neovim and run `:Lazy sync` (for new plugins) or `:Lazy clean` (to remove orphaned plugins).
+After changes:
 
-## 6. Additional Formatters & Tools
-
-Some formatters used by **Conform.nvim** are **not installed by Mason** and must be installed manually.
-
-### SQL Formatting
-
-```bash
-npm install -g sql-formatter
+```vim
+:Lazy sync
 ```
 
-Optional `.sql-formatter.json` for custom formatting:
+## 7. Formatters (Conform.nvim)
 
-```json
-{
-  "language": "sqlite",
-  "keywordCase": "upper",
-  "identifierCase": "preserve",
-  "tabWidth": "4",
-  "useTabs": false,
-  "linesBetweenQueries": 1
-}
-```
+Some formatters require manual installation:
 
-### Other Manual Formatter Installs
-
-| **Language** | **Formatter** | **Install Command**                                  |
-| ------------ | ------------- | ---------------------------------------------------- |
-| Python       | black         | `pip install black`                                  |
-| Lua          | stylua        | `cargo install stylua` or `brew install stylua`      |
-| Markdown     | prettier      | `npm install -g prettier`                            |
-| YAML         | prettier      | `npm install -g prettier`                            |
-| Go           | Goimports     | `go install golang.org/x/tools/cmd/goimports@latest` |
+**Examples**
+|Language | Formatter | Install |
+| --- | --- | --- |
+| Python | black | `pip install black` |
+| Lua | stylua | `cargo install stylua` |
+| JS/TS | prettier | `npm install -g prettier` |
+| SQL | sql-formatter | `npm install -g sql-formatter` |
+| YAML | prettier | `npm install -g prettier` |
+| Go | goimports | `go install golang.org/x/tools/cmd/goimports@latest` |
 
 Check available formatters in Neovim:
 
-```vim
-:ConformInfo
-```
+    ```vim
+    :ConformInfo
+    ```
 
-## 7. Key Commands
+## 8. Key Commands
 
 | **Command**             | **Description**                      |
 | ----------------------- | ------------------------------------ |
@@ -147,6 +179,7 @@ Check available formatters in Neovim:
 | `:Telescope live_grep`  | Search text across files             |
 | `:LspInfo`              | Show active LSP servers              |
 | `:lspsage`              | (if installed) UI for LSP actions    |
+| `:Noice`                | Noice UI dashboard                   |
 
 Plus all normal LSP mappings (`gd`, `K`, `<leader>rn`, etc.) defined in your LSP setup.
 

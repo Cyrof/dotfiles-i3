@@ -1,17 +1,19 @@
--- Basic settings 
-vim.o.number = true -- enable line numbers
-vim.o.tabstop = 4 -- number of spaces a tab represents
-vim.o.shiftwidth = 4 -- number of spaces for each indentation 
-vim.o.expandtab = true -- convert tabs to spaces 
-vim.o.smartindent = true -- automatically indent new lines 
-vim.o.wrap = false -- disable line wrapping
-vim.o.cursorline = true -- highlight the current line
+-- Basic settings
+vim.o.number = true        -- enable line numbers
+vim.o.tabstop = 4          -- number of spaces a tab represents
+vim.o.shiftwidth = 4       -- number of spaces for each indentation
+vim.o.expandtab = true     -- convert tabs to spaces
+vim.o.smartindent = true   -- automatically indent new lines
+vim.o.wrap = false         -- disable line wrapping
+vim.o.cursorline = true    -- highlight the current line
 vim.o.termguicolors = true -- enable 24-bit RGB colors
 vim.o.clipboard = "unnamedplus"
 
--- syntax highlighting and fil.etype plugins 
+-- syntax highlighting and fil.etype plugins
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
+
+require("config.ansible")
 
 vim.g.mapleader = ','
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, silent = true })

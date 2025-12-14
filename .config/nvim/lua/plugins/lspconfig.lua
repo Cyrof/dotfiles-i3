@@ -71,6 +71,7 @@ return {
             vim.lsp.config("yamlls", {
                 on_attach = on_attach,
                 capabilities = capabilities,
+                filetypes = { "yaml", "yml" },
                 settings = {
                     yaml = {
                         validate = true,
@@ -81,6 +82,23 @@ return {
                         },
                     },
                 },
+            })
+
+            -- Ansible
+            vim.lsp.config("ansiblels", {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                filetypes = { "yaml.ansible" },
+                settings = {
+                    ansible = {
+                        validation = {
+                            enabled = true,
+                            lint = {
+                                enabled = true,
+                            }
+                        }
+                    }
+                }
             })
 
             -- Markdown

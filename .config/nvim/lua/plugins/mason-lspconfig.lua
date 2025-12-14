@@ -15,6 +15,7 @@ return {
                 "gopls",
                 "clangd",
                 "yamlls",
+                "ansiblels",
                 "marksman",
                 "sqls",
                 -- web stack

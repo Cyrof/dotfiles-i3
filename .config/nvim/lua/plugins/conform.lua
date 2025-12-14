@@ -1,19 +1,31 @@
 return {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
-    opts = function ()
+    opts = function()
         local util = require("conform.util")
 
         return {
-            format_on_save = {
-                timeout_ms = 500,
-                lsp_fallback = true,
-            },
+            format_on_save = function(bufnr)
+                local ft = vim.bo[bufnr].filetype
+
+                if ft == "yaml.ansible" then
+                    return {
+                        timeout_ms = 5000,
+                        lsp_fallback = true,
+                    }
+                end
+
+                return {
+                    timeout_ms = 500,
+                    lsp_fallback = true,
+                }
+            end,
             formatters_by_ft = {
                 go = { "goimports" },
                 lua = { "stylua" },
                 python = { "black" },
                 yaml = { "prettier" },
+                ["yaml.ansible"] = { "prettier" },
                 markdown = { "prettier" },
                 sql = { "sql_formatter" },
                 proto = { "clang_format" },

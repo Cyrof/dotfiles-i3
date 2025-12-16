@@ -52,6 +52,7 @@ return {
                 prettier = {
                     prepend_args = {
                         "--config-precedence=prefer-file",
+                        "--config", vim.fn.expand("~/.config/.prettierrc"),
                     },
                     cwd = util.root_file({ ".prettierrc", ".prettierrc.json", "package.json" }),
                     require_cwd = false,

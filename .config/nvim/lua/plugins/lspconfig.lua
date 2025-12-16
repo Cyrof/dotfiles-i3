@@ -28,7 +28,8 @@ return {
                 km("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
                 km("n", "gr", vim.lsp.buf.references, bufopts)
                 km("n", "<leader>lf", function()
-                    vim.lsp.buf.format({ async = true })
+                    -- vim.lsp.buf.format({ async = true })
+                    require("conform").format({ async = true, lsp_fallback = true })
                 end, bufopts)
             end
 

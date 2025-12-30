@@ -79,7 +79,6 @@ return {
                         format = { enabled = true },
                         schemas = {
                             ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*.y?(a)ml",
-                            ["kubernetes"] = "/*.k8s.yaml",
                         },
                     },
                 },

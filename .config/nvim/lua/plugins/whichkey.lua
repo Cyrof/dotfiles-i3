@@ -85,6 +85,10 @@ return {
                 { "<leader>se", "<cmd>Noice errors<cr>",                                          desc = "Error Messages" },
                 { "<leader>sc", "<cmd>Noice dismiss<cr>",                                         desc = "Dismiss Messages" },
                 { "<leader>sa", "<cmd>Noice all<cr>",                                             desc = "All Messages" },
+
+                -- Suda (sudo file actions)
+                { "<leader>W",  "<cmd>SudaWrite<cr>",                                             desc = "Write as sudo" },
+                { "<leader>R",  "<cmd>SudaRead<cr>",                                              desc = "Re-open as sudo" },
             })
         end,
     },

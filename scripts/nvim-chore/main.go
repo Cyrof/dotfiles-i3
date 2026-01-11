@@ -69,7 +69,7 @@ func main() {
 		remote  = flag.String("remote", envOr("REMOTE", "origin"), "Git remote")
 		noPush  = flag.Bool("no-push", false, "Skip pushing")
 		dryRun  = flag.Bool("dry-run", false, "Preview without committing")
-		targets = flag.String("targets", ".config/nvim", "Space-seperated paths to include")
+		targets = flag.String("targets", "config/.config/nvim", "Space-seperated paths to include")
 	)
 	flag.Parse()
 	extra := strings.TrimSpace(strings.Join(flag.Args(), " "))

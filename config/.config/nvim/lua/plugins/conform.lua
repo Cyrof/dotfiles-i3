@@ -3,18 +3,15 @@ return {
     event = { "BufWritePre" },
     opts = function()
         local util = require("conform.util")
-
         return {
             format_on_save = function(bufnr)
                 local ft = vim.bo[bufnr].filetype
-
                 if ft == "yaml.ansible" then
                     return {
                         timeout_ms = 5000,
                         lsp_fallback = true,
                     }
                 end
-
                 return {
                     timeout_ms = 500,
                     lsp_fallback = true,
@@ -29,7 +26,6 @@ return {
                 markdown = { "prettier" },
                 sql = { "sql_formatter" },
                 proto = { "clang_format" },
-
                 -- web stack
                 html = { "prettier" },
                 css = { "prettier" },
@@ -52,7 +48,7 @@ return {
                 prettier = {
                     prepend_args = {
                         "--config-precedence=prefer-file",
-                        "--config", vim.fn.expand("~/.config/.prettierrc"),
+                        "--config", vim.fn.expand("~/.config/.prettierrc.json"),
                     },
                     cwd = util.root_file({ ".prettierrc", ".prettierrc.json", "package.json" }),
                     require_cwd = false,

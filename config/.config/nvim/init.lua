@@ -4,10 +4,12 @@ vim.o.tabstop = 4          -- number of spaces a tab represents
 vim.o.shiftwidth = 4       -- number of spaces for each indentation
 vim.o.expandtab = true     -- convert tabs to spaces
 vim.o.smartindent = true   -- automatically indent new lines
-vim.o.wrap = false         -- disable line wrapping
 vim.o.cursorline = true    -- highlight the current line
 vim.o.termguicolors = true -- enable 24-bit RGB colors
 vim.o.clipboard = "unnamedplus"
+vim.o.wrap = false         -- visually wrap long lines
+vim.o.linebreak = true     -- wrap at word boundaries
+vim.o.breakindent = true   -- preserve indentation on wrapped lines
 
 -- syntax highlighting and fil.etype plugins
 vim.cmd('syntax enable')
@@ -17,6 +19,8 @@ require("config.ansible")
 
 vim.g.mapleader = ','
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'j', 'gj', { silent = true })
+vim.keymap.set('n', 'k', 'gk', { silent = true })
 
 -- load lazy nvim
 local ok, err = pcall(require, "config.lazy")

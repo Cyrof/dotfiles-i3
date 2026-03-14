@@ -208,7 +208,8 @@ bindsym $mod+d exec rofi -show run -theme ~/.config/rofi/config.rasi
 assign [class="code"] 2
 
 # Create keybind for Kitty terminal emulator
-bindsym $mod+Return exec kitty 
+# bindsym $mod+Return exec kitty 
+bindsym $mod+Return exec alacritty
 
 # Add gaps
 gaps inner 3 px 

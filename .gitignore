@@ -1,2 +1,6 @@
 # ignore update_config scripts 
 update_configs.sh
+
+# ignore qutebrowser
+config/.config/qutebrowser/*
+!config/.config/qutebrowser/config.py

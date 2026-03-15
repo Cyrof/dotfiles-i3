@@ -4,3 +4,4 @@ update_configs.sh
 # ignore qutebrowser
 config/.config/qutebrowser/*
 !config/.config/qutebrowser/config.py
+!config/.config/qutebrowser/README.md

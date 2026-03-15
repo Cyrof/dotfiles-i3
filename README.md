@@ -9,25 +9,26 @@ Each application folder includes its own `README.md` where applicable, with more
 ```bash
 .
 ├── bin
-│   └── nvim-chore
+│   └── nvim-chore
 ├── config
-│   └── .config
-│       ├── alacritty
-│       ├── i3
-│       ├── nvim
-│       ├── picom
-│       ├── polybar
-│       ├── .prettierrc.json
-│       └── rofi
+│   └── .config
+│       ├── alacritty
+│       ├── i3
+│       ├── nvim
+│       ├── picom
+│       ├── polybar
+│       ├── .prettierrc.json
+│       ├── qutebrowser
+│       └── rofi
 ├── .gitignore
 ├── LICENSE
 ├── Makefile
 ├── README.md
 ├── scripts
-│   └── nvim-chore
-│       ├── go.mod
-│       ├── main.go
-│       └── README.md
+│   └── nvim-chore
+│       ├── go.mod
+│       ├── main.go
+│       └── README.md
 └── .stow-local-ignore
 ```
 
@@ -36,13 +37,7 @@ Each application folder includes its own `README.md` where applicable, with more
 Install the following packages (example for Arch Linux):
 
 ```bash
-sudo pacman -S i3-gaps alacritty neovim picom polybar rofi
-```
-
-Make sure you have **GNU Stow** Installed for symlinking:
-
-```bash
-sudo pacman -S stow
+sudo pacman -S i3-gaps alacritty neovim picom polybar rofi qutebrowser stow
 ```
 
 ## Installation
@@ -66,6 +61,16 @@ sudo pacman -S stow
     i3-msg reload
     ```
 
+## Uninstall
+
+To remove the symlinks created by Stow:
+
+```bash
+stow -D --target="$HOME" config
+```
+
+This removes only the symlinks managed by the `config` packages and leaves the repository untouched.
+
 ## Quick Start
 
 - **i3**: Mod + Return opens Alacritty, `Mod + D` opens Rofi.
@@ -73,6 +78,7 @@ sudo pacman -S stow
 - **Polybar**: Started with the provided launch script or i3 startup configuration.
 - **Picom** & **Rofi**: Automatically loaded by i3 on startup.
 - **Alacritty**: Configured as the main terminal emulator.
+- **Qutebrowser**: Keyboard-driven browser configuration included in `.config/qutebrowser`.
 
 ## Additional Notes
 

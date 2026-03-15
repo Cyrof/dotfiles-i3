@@ -6,7 +6,7 @@ return {
         config = function()
             vim.g.mkdp_auto_start = 0
             vim.g.mkdp_auto_close = 1
-            vim.g.mkdp_browser = "opera"
+            vim.g.mkdp_browser = "qutebrowser"
             vim.fn["mkdp#util#install"]()
 
             -- keymap to toggle preview

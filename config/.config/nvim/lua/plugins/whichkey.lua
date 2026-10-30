@@ -71,12 +71,12 @@ return {
                 { "<leader>g",  group = "Git" },
                 { "<leader>gp", "<cmd>lua require('gitsigns').preview_hunk()<cr>",                desc = "Preview Hunk" },
                 { "<leader>gb", "<cmd>lua require('gitsigns').toggle_current_line_blame()<cr>",   desc = "Toggle Blame" },
-                { "]h",         "<cmd>lua require('gitsigns).next_hunk()<cr>",                    desc = "Next Hunk" },
+                { "]h",         "<cmd>lua require('gitsigns').next_hunk()<cr>",                   desc = "Next Hunk" },
                 { "[h",         "<cmd>lua require('gitsigns').prev_hunk()<cr>",                   desc = "Previous Hunk" },
 
                 -- Illuminate
                 { "]r",         "<cmd>lua require('illuminate').goto_next_reference(false)<cr>",  desc = "Next Reference" },
-                { "r[",         "<cmd>lua require('illuminate').goto_prev_reference(false)<cr>",  desc = "Previous Reference" },
+                { "[r",         "<cmd>lua require('illuminate').goto_prev_reference(false)<cr>",  desc = "Previous Reference" },
 
                 -- Noice
                 { "<leader>s",  group = "Search/Messages" },
@@ -89,6 +89,23 @@ return {
                 -- Suda (sudo file actions)
                 { "<leader>W",  "<cmd>SudaWrite<cr>",                                             desc = "Write as sudo" },
                 { "<leader>R",  "<cmd>SudaRead<cr>",                                              desc = "Re-open as sudo" },
+
+                -- Terraform
+                { "<leader>t",  group = "Terraform" },
+                {
+                    "<leader>tf",
+                    function()
+                        require("conform").format({
+                            async = true,
+                            lsp_format = "fallback",
+                        })
+                    end,
+                    desc = "Format Terraform",
+                },
+                { "<leader>ti", "<cmd>terminal terraform init<cr>",       desc = "Terraform Init", },
+                { "<leader>tp", "<cmd>terminal terraform plan<cr>",       desc = "Terraform Plan", },
+                { "<leader>tv", "<cmd>terminal terraform validate<cr>",   desc = "Terraform Validate", },
+                { "<leader>ts", "<cmd>terminal terraform state list<cr>", desc = "Terraform State List", },
             })
         end,
     },

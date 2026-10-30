@@ -6,7 +6,10 @@ return {
         return {
             format_on_save = function(bufnr)
                 local ft = vim.bo[bufnr].filetype
-                if ft == "yaml.ansible" then
+                if ft == "yaml.ansible"
+                    or ft == "terraform"
+                    or ft == "terraform-vars"
+                    or ft == "tf" then
                     return {
                         timeout_ms = 5000,
                         lsp_fallback = true,
@@ -18,6 +21,9 @@ return {
                 }
             end,
             formatters_by_ft = {
+                terraform = { "terraform_fmt" },
+                ["terraform-vars"] = { "terraform_fmt" },
+                tf = { "terraform_fmt" },
                 go = { "goimports" },
                 lua = { "stylua" },
                 python = { "black" },

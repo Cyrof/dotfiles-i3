@@ -214,6 +214,19 @@ return {
                 capabilities = capabilities,
             })
 
+            -- terraform
+            vim.lsp.config("terraformls", {
+                settings = {
+                    terraform = {
+                        validation = {
+                            enableEnhancedValidation = true,
+                        },
+                    },
+                },
+            })
+
+            vim.lsp.enable("terraformls")
+
             -- map tmpl to html
             vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
                 pattern = "*.tmpl",

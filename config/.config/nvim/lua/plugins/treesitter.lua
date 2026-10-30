@@ -15,6 +15,7 @@ return {
                 "lua", "vim", "vimdoc", "javascript", "typescript", "python",
                 "rust", "go", "html", "css", "json", "yaml", "toml",
                 "markdown", "bash", "proto",
+                "terraform", "hcl",
             })
 
             vim.api.nvim_create_autocmd("FileType", {
@@ -22,6 +23,7 @@ return {
                     "lua", "vim", "vimdoc", "javascript", "typescript", "python",
                     "rust", "go", "html", "css", "json", "yaml", "toml",
                     "markdown", "bash", "proto",
+                    "terraform", "terraform-vars", "hcl"
                 },
                 callback = function()
                     pcall(vim.treesitter.start)
